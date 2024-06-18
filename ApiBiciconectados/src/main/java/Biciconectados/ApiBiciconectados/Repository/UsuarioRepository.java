@@ -1,4 +1,4 @@
-package Biciconectados.ApiBiciconectados.Repository
+package Biciconectados.ApiBiciconectados.Repository;
 
 interface UsuarioRepository {
 }
