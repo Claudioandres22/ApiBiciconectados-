@@ -9,7 +9,8 @@ import java.util.*;
 @Table(name = "Eventos")
 @Getter
 @Setter
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Evento {
 
     @Id

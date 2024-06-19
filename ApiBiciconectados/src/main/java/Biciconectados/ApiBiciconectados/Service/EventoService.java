@@ -26,9 +26,9 @@ public class EventoService {
     public Evento crearEvento(Evento evento) {
         return eventoRepository.save(evento);
     }
-//arreglar (setId)
-    public Evento actualizarEvento(long id, Evento eventoActualizado) {
-        eventoActualizado.setId(id);
+
+    public Evento actualizarEvento(int id, Evento eventoActualizado) {
+        eventoActualizado.setEventoId(id);
         return eventoRepository.save(eventoActualizado);
     }
 
