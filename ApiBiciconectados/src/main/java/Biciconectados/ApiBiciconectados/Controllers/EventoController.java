@@ -36,10 +36,7 @@ public class EventoController {
 
     // Endpoint para actualizar un evento
     @PutMapping("/{id}")
-    public void actualizarEvento(
-            @PathVariable int id,
-            @RequestBody Evento eventoActualizado
-    ) {
+    public void actualizarEvento(@PathVariable int id, @RequestBody Evento eventoActualizado) {
         eventoService.actualizarEvento(id, eventoActualizado);
     }
 
