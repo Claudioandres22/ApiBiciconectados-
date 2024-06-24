@@ -1,4 +1,4 @@
-package Biciconectados.ApiBiciconectados.Controllers;
+package Biciconectados.ApiBiciconectados.Controller;
 import Biciconectados.ApiBiciconectados.Models.Notificacion;
 import Biciconectados.ApiBiciconectados.Service.NotificacionService;
 import org.springframework.beans.factory.annotation.*;
