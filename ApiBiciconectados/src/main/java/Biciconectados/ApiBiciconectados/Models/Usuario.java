@@ -5,7 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -54,5 +56,14 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evento> eventos;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "UsuarioRoles",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name ="rol_id"))
+    private Set<Rol> roles = new HashSet<>();
+
+
+
 
 }

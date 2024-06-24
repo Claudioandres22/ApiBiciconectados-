@@ -1,16 +1,20 @@
 package Biciconectados.ApiBiciconectados.Service;
 
+import Biciconectados.ApiBiciconectados.Models.EROL;
+import Biciconectados.ApiBiciconectados.Models.Rol;
 import Biciconectados.ApiBiciconectados.Models.Usuario;
+import Biciconectados.ApiBiciconectados.Repository.RolRepository;
 import Biciconectados.ApiBiciconectados.Repository.UsuarioRepository;
 import Biciconectados.ApiBiciconectados.dto.UsuarioDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-
-
+import java.util.Set;
 
 
 @Service
@@ -50,6 +54,29 @@ public class UsuarioService {
 
     public void deleteUsuarioById(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Autowired
+    private UsuarioRepository usuarioRepositor;
+
+    @Autowired
+    private RolRepository rolRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public Usuario registrarUsuario(Usuario usuario) {
+        usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
+        Set<Rol> roles = new HashSet<>();
+
+        Optional<Rol> rolUsuario = rolRepository.findByNombreRol(EROL.USER);
+        rolUsuario.ifPresent(roles::add);
+        usuario.setRoles(roles);
+        return usuarioRepository.save(usuario);
+    }
+
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 
 }
